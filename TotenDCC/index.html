@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>TotenDCC</title>
+    <style>
+        * {
+            padding:0;
+            margin:0;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%; 
+            overflow: hidden;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
+        .intro {
+            /* Make video to at least 100% wide and tall */
+            min-width: 100%; 
+            min-height: 100%; 
+
+            /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+            width: auto;
+            height: auto;
+
+            /* Center the video */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            /*filter: blur(4px);*/
+        }
+
+        .circulos {
+            width: 150px; 
+            height: 150px; 
+            object-fit: cover;
+            opacity: 0; /* Começa invisível */
+            animation: fadeIn 0.5s forwards; /* Animação de fade-in */
+        }
+
+        .overlay-image {
+            position: absolute;
+            bottom: 30px; 
+            left: 10%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            border: 0px solid white; 
+            overflow: hidden; 
+        }
+
+        .overlay-image:hover {
+            box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7);
+        }
+
+        .center-image {
+            position: absolute;
+            top: 32%;
+            left: 47%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            width: 100vh;
+            height: 100px;
+        }
+
+        .right-image {
+            position: absolute;
+            top: 1%;
+            left: 1%;
+            height: 10px;
+            width: 80px;
+        }
+
+        .unilever{
+            width: 60px; 
+            height: 70px; 
+            object-fit: cover;
+        }
+        
+        .left-image {
+            position: absolute;
+            top: 1%;
+            left: 90%;
+            height: 150px;
+            width: 120px;
+        }
+
+        .voyager{
+            height: 80px;
+            width: 80px;
+        }
+
+        .expertises-image {
+            position: absolute;
+            top: 17%;
+            left: 90%;
+            height: 150px;
+            width: 120px;
+        }
+
+        .expertises{
+            height: 80px;
+            width: 80px;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            animation: slideIn 0.5s ease-in-out forwards; 
+        }
+
+        .modal-dialog {
+            max-width: 80%;
+            margin: 1.75rem auto;
+        }
+
+        .modal-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-image-container {
+            flex: 1;
+            text-align: center;
+            margin-right: 20px;
+            opacity: 3; 
+            animation: slideIn 0.5s ease-in-out forwards;
+        }
+
+        .modal-text {
+            flex: 1;
+            opacity: 0;
+            animation: slideIn 0.5s ease-in-out forwards;
+            overflow-y: auto;
+            font-size: 16px; 
+            line-height: 1.6; 
+            max-height: 400px; 
+        }
+
+        .modal-text p {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .titlemodal {
+            color: #fff;
+            margin: 0;
+            text-align: center; 
+            background-color: transparent; 
+            padding-top: 0px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(80px); 
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .overlay-image:nth-child(1) { animation-delay: 0.1s; }
+        .overlay-image:nth-child(2) { animation-delay: 0.2s; }
+        .overlay-image:nth-child(3) { animation-delay: 0.3s; }
+        .overlay-image:nth-child(4) { animation-delay: 0.4s; }
+        .overlay-image:nth-child(5) { animation-delay: 0.5s; }
+        .overlay-image:nth-child(6) { animation-delay: 0.6s; }
+        .overlay-image:nth-child(7) { animation-delay: 0.7s; }
+
+    </style>
+</head>
+<body>
+    <div class="mx-auto text-center">
+        <div class="video-container">
+            <video class="img-fluid p-0 intro" autoplay loop muted>
+                <source src="img/totemDCC.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="overlay-image" style="left: 12%;">
+            <img src="img/IMG_4280.jpeg" class="circulos" alt="1img" onclick="openModal('img/IMG_4280.jpeg', `Essa estação deixamos o formulário para que todos possam descobrir qual o seu estilo de aprendizagem e já vejam como podem aprender da melhor forma. Além de conteúdos de UMS, com gamificações personalizadas.<br><br><span class='fw-bold'>Treinamentos disponiveis:</span> SMED / CALENDARIO AM / OLE / CENTERLINE / RUN TO STANDARD. <span class='fw-bold'><br><br>Skill aprimorada:</span> AM / SMED / CALENDARIO AM / OLE / CENTERLINE / RUN TO STANDARD. <br><br><span class='fw-bold'>Perda atacada:</span> Árvore de perdas de eficiência.`, 'Estação do Saber')">
+        </div>
+        <div class="overlay-image" style="left: 27%;">
+            <img src="img/colmeia.jpeg" class="circulos" alt="1img" onclick="openModal('img/colmeia.jpeg', `<span class='text-md-start mb-4'> Nosso espaço para treinamentos presenciais adota a metodologia ágil, promovendo aprendizado prático e colaborativo. Além de transmitir conhecimento, é utilizado para a construção de projetos reais, proporcionando uma experiência imersiva.</span>`, 'Espaço para treinamentos presenciais')">
+        </div>
+        <div class="overlay-image" style="left: 42%;">
+            <img src="img/UniU.jpeg" class="circulos" alt="1img" onclick="openModal('img/UniU.jpeg', `Uma estação de aprendizado independente, muito focado para acesso da operação no UniU, nossa universidade de treinamentos do Brasil. Onde temos conteúdos teóricos da fábrica sobre segurança, qualidade e outros. <br><br><span class='fw-bold'>Treinamentos disponiveis:</span> Plataforma UniU <br><br><span class='fw-bold'>Skill aprimorada:</span> Segurança / Qualidade / Meio Ambiente / Saúde. <br><br><span class='fw-bold'>Perda atacada:</span> Legal e mandatório / Licença de operação / Percepção de risco`, 'Estação Uniu de Autotreinamento')">
+        </div>
+        <div class="overlay-image" style="left: 57%;">
+            <img src="img/IMG_4284.jpeg" class="circulos" alt="1img" onclick="openModal('img/IMG_4284.jpeg', `Aqui, visualizamos o funcionamento de equipamentos vitais e realizamos prototipagem, utilizando modelos 3D para uma compreensão profunda e interativa. Além do VIN, nosso robô interativo. <br><br><span class='fw-bold'>Treinamentos disponíveis no VIN:</span>Busca de qualquer informação + Treinamentos sobre nossas BUs.<br><br><span class='fw-bold'>Skill aprimorada:</span> Tecnologias dos nossos produtos.<br><br><span class='fw-bold'>Perda atacada:</span>Percepção de qualidade.`, 'Estação de Prototipagem & Simulações')">
+        </div>
+        <div class="overlay-image" style="left: 72%;">
+            <img src="img/realidadevirtual.jpeg" class="circulos" alt="1img" onclick="openModal('img/realidadevirtual.jpeg', `Aqui, simulamos o processo de troca de formato, visando reduzir o tempo de inatividade e melhorar nossa linha de produção. <br><br><span class='fw-bold'>Treinamentos disponíveis:</span> Changeover. <br><br><span class='fw-bold'>Skill aprimorada:</span> Changeover / Pilar AM. <br><br><span class='fw-bold'>Perda atacada:</span> Changeover [árvore de perdas de eficiência]`, 'Estação de Realidade Virtual (Changeover):')">
+        </div>
+        <div class="overlay-image" style="left: 87%;">
+            <img src="img/alex.jpeg" class="circulos" alt="1img" onclick="openModal('img/alex.jpeg.', `Na estação PQS, modelamos nossos produtos para desenvolver uma compreensão aguçada de qualidade. Utilizando óculos de realidade virtual, nossos colaboradores podem manusear produtos virtuais, identificar e classificar defeitos, o que eleva o padrão de qualidade de nosso trabalho. <br><br><span class='fw-bold'>Treinamentos disponíveis:</span> PQS com o óculos virtual ou na TV. <br><br><span class='fw-bold'>Skill aprimorada:</span> Percepção de qualidade. <br><br><span class='fw-bold'>Perda atacada:</span> # Incidentes de qualidade.`, 'Estação de PQS (Percepção de Qualidade)')">
+        </div>
+
+        <div class="center-image">
+            <img src="img/6.svg" class="" alt="">
+        </div>
+        <div class="right-image">
+            <img src="img/Logo white transparent RGB.png" class="unilever" alt="DCC">
+        </div>
+        <div class="left-image">
+            <img src="img/voyager.png" class="voyager" alt="" onclick="openPortal()" data-bs-togle="tooltip" title="Produtividade">
+        </div>
+        <div class="expertises-image" onclick="openExpertises()" data-bs-toggle="tooltip" title="Rede de Expertises">
+            <img src="img/expertises.png" class="expertises" alt="">
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body m-0 p-0">
+                    <div class="modal-image-container">
+                        <img id="modalImage" class="img-fluid rounded" src="" alt="">
+                    </div>
+                    <div class="modal-text lh-1">
+                        <h2 class="modal-title text-light titlemodal mb-2 p-0" id="modalTitle"></h2>
+                        <p id="imageText" class="ps-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+
+        function openModal(imageSrc, text, title) {
+            $('#modalTitle').text(title);
+            $('#modalImage').attr('src', imageSrc);
+            $('#imageText').html(text);
+            $('#imageModal').modal('show');
+            $('.overlay-image').hide();
+            $('.center-image').hide();
+            $('.left-image').hide();
+            $('.expertises-image').hide();
+        }
+
+        $('#imageModal').on('hidden.bs.modal', function () {
+            $('.overlay-image').each(function(index) {
+                $(this).delay(100 * index).fadeIn();
+            });
+            $('.center-image').show();
+            $('.left-image').show();
+            $('.expertises-image').show();
+        });
+
+        function openExpertises() {
+            window.location = 'https://apps.powerapps.com/play/e/default-f66fae02-5d36-495b-bfe0-78a6ff9f8e6e/a/eb38b64e-9dc0-49e9-a9ad-a8673b872bf2?tenantId=f66fae02-5d36-495b-bfe0-78a6ff9f8e6e';
+        }
+
+        function openPortal() {
+            window.location = 'https://app.powerbi.com/reportEmbed?reportId=85420f8d-c968-4d71-89fe-69f5fd425392&autoAuth=true&ctid=f66fae02-5d36-495b-bfe0-78a6ff9f8e6e'
+        }
+    </script>
+</body>
+</html>
